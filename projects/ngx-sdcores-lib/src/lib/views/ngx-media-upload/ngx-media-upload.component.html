@@ -1,0 +1,145 @@
+<div id="mediaUploader" [ngStyle]="{'height': height + 'px'}">
+    <div *ngIf="(!mediaItem.type || !mediaItem.src) && !disabled" class="card uploader">
+        <div class="card-body">
+            <div class="group-container">
+                <img *ngIf="height >= 10" [src]="imagePlusUrl">
+                <label [for]="'inputBrowseFile' + id" class="btn btn-primary" type="button">
+                    Browse Files
+                    <input type="file" [name]="'browse-file-' + mediaItem.id" [id]="'inputBrowseFile' + id"
+                        [accept]="accept" [multiple]="false" hidden (change)="onSelectFile($event)" />
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="mediaItem.type && mediaItem.src" class="card media">
+        <div class="card-body">
+            <img #imgSrc *ngIf="mediaItem.type === mediaType.IMG" [src]="mediaItem.srcSafe"
+                (error)="imgSrc.hidden = true; imgError.hidden = false"
+                [ngClass]="{'round-img-review' : isRoundCropper}" />
+
+            <video #videoSrc *ngIf="mediaItem.type === mediaType.VIDEO" [src]="mediaItem.srcSafe"
+                (error)="videoSrc.hidden = true; imgError.hidden = false"></video>
+
+            <img #imgError [src]="imageErrorUrl" hidden>
+
+            <div class="action-button-group">
+                <button *ngIf="preview" type="button" class="btn btn-light" (click)="openModal(modelTemplate)">
+                    <img [src]="imagePreviewUrl">
+                </button>
+                <button *ngIf="copy" type="button" class="btn btn-light" (click)="copySrc()">
+                    <img [src]="imageCopyUrl">
+                </button>
+                <button *ngIf="crop" type="button" class="btn btn-light" (click)="openCropModal(cropImageTemplate)">
+                    <img [src]="imageCropUrl">
+                </button>
+                <button *ngIf="remove" type="button" class="btn btn-light" (click)="onRemoveMediaClicked()">
+                    <img [src]="imageDeleteUrl">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #modelTemplate>
+    <div class="modal-body">
+        <img #imgSrcModal *ngIf="previewType === mediaType.IMG" width="100%" [src]="previewSrcSafe" alt="Preview"
+            (error)="imgSrcModal.hidden = true; imgErrorModal.hidden = false"
+            [ngClass]="{'round-img-review' : isRoundCropper}">
+        <video #videoSrcModal *ngIf="previewType === mediaType.VIDEO" width="100%" [src]="previewSrcSafe" alt="Preview"
+            controls (error)="videoSrcModal.hidden = true; imgErrorModal.hidden = false"></video>
+        <img #imgErrorModal [src]="imageErrorUrl" hidden>
+    </div>
+</ng-template>
+
+<ng-template #cropImageTemplate>
+    <div class="modal-header">
+        <h5 class="modal-title">Crop Image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cropModal?.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body img-container">
+        <div class="row">
+            <div class="col-md-9">
+                <image-cropper *ngIf="cropImage.type === mediaType.IMG" [imageFile]="cropImage.file"
+                    [containWithinAspectRatio]="containWithinAspectRatio" (imageCropped)="imageCropped($event)"
+                    [maintainAspectRatio]="maintainAspectRatio" [canvasRotation]="canvasRotation"
+                    [transform]="transform" [roundCropper]="isRoundCropper" [aspectRatio]="aspectRatio"
+                    class="img-container">
+                </image-cropper>
+            </div>
+            <div class="col-md-3">
+                <img [src]="cropImage.srcSafe" [ngClass]="{'round-img-review' : isRoundCropper}" class="img-preview " />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer modal-crop">
+        <div id="cropperController">
+            <img [src]="selectionCropImage" alt="selectionCropImage" class="img-icon">
+            <ng-select name="cropper-controller" [(ngModel)]="textToCompare"
+                (ngModelChange)="updateCropper()" [clearable]="false">
+                <ng-option [value]="false">Square</ng-option>
+                <ng-option [value]="true">Round</ng-option>
+            </ng-select>
+        </div>
+        <div id="ratioController">
+            <img class="img-icon" [src]="cropRatioImage" alt="cropRatioImage">
+            <ng-select name="ratio-controller" [disabled]="isRoundCropper" [(ngModel)]="aspectRatio"
+                (ngModelChange)="updateRatio()" [clearable]="false">
+                <ng-option [value]="0">Free</ng-option>
+                <ng-option [value]="1">1:1</ng-option>
+                <ng-option [value]="16/9">16:9</ng-option>
+                <ng-option [value]="5/4">5:4</ng-option>
+                <ng-option [value]="7/5">7:5</ng-option>
+                <ng-option [value]="4/3">4:3</ng-option>
+                <ng-option [value]="5/3">5:3</ng-option>
+                <ng-option [value]="3/2">3:2</ng-option>
+                <ng-option [value]="9/16">9:16</ng-option>
+                <ng-option [value]="4/5">4:5</ng-option>
+                <ng-option [value]="5/7">5:7</ng-option>
+                <ng-option [value]="3/4">3:4</ng-option>
+                <ng-option [value]="3/5">3:5</ng-option>
+                <ng-option [value]="2/3">2:3</ng-option>
+            </ng-select>
+        </div>
+        <div id="rotationController">
+            <img class="img-icon" [src]="cropRotateImage" alt="cropRotateImage">
+            <span class="img-icon">{{rotation}}</span>
+            <input type="range" name="rotation-controller" [(ngModel)]="rotation" (ngModelChange)="updateRotation()"
+                class="form-range" min="-45" max="45" step="1">
+        </div>
+
+        <div class="btn-group" role="group">
+            <button class="btn btn-light" (click)="rotateLeft()">
+                <img class="img-icon" [src]="cropRotateLeftImage" alt="rotateLeft">
+            </button>
+
+            <button class="btn btn-light" (click)="rotateRight()">
+                <img class="img-icon" [src]="cropRotateRightImage" alt="rotateRight">
+            </button>
+
+            <button class="btn btn-light" (click)="flipHorizontal()">
+                <img class="img-icon" [src]="cropFlipHorizontalImage" alt="flipHorizontal">
+            </button>
+
+            <button class="btn btn-light" (click)="flipVertical()">
+                <img class="img-icon" [src]="cropFlipVerticalImage" alt="flipVertical"
+                    style="transform: rotate(-90deg);">
+            </button>
+
+            <button class="btn btn-light" (click)="toggleContainWithinAspectRatio()" [disabled]="aspectRatio == 0">
+                <img class="img-icon" [src]="containWithinAspectRatio ? cropZoomOutImage : cropZoomInImage"
+                    [alt]="containWithinAspectRatio ? 'Fill Aspect Ratio' : 'Contain Within Aspect Ratio'">
+            </button>
+
+            <button class="btn btn-light" (click)="resetImage()">
+                <img class="img-icon" [src]="cropResetChangesImage" alt="resetImage">
+            </button>
+
+            <button class="btn btn-light" (click)="saveImage()">
+                <img class="img-icon" [src]="cropEditImage" alt="saveEditChange">
+            </button>
+        </div>
+    </div>
+</ng-template>

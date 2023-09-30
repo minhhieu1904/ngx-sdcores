@@ -1,0 +1,15 @@
+<ng-snotify></ng-snotify>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple"></ngx-spinner>
+
+<div class="p-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <ngx-media-upload #srcUploader [copy]="true" [src]="modelB.src" [disabled]="false" [preview]="true"
+                    [(file)]="modelB.file" (result)="handleResult($event)" [crop]="true" [remove]="true"
+                    [confirmRemove]="true">
+                </ngx-media-upload>
+            </div>
+        </div>
+    </div>
+</div>

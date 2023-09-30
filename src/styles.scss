@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+.modal-footer.modal-crop {
+    justify-content: center !important;
+    padding: 10px !important;
+}
+
+ng-select {
+    min-width: 90px;
+}
+
+.imageCropper {
+
+    .img-container,
+    .img-preview {
+        background-color: #f7f7f7;
+        text-align: center;
+        width: 100%;
+    }
+
+    .img-container {
+        margin-bottom: 1rem;
+        max-height: 500px;
+        min-height: 200px;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .img-preview {
+        float: left;
+        margin-bottom: .5rem;
+        margin-right: .5rem;
+        overflow: hidden;
+
+        img {
+            max-width: 100%;
+        }
+
+    }
+
+    #rotationController,
+    #cropperController,
+    #ratioController {
+        display: flex;
+        align-items: center;
+
+        img {
+            margin-right: 0.25rem;
+        }
+    }
+
+    #rotationController {
+        min-width: 180px;
+        
+        .img-icon {
+            width: 25px;
+        }
+    }
+
+    .btn-group {
+        .btn {
+            padding: 0.375rem 0.5rem !important;
+        }
+    }
+}
