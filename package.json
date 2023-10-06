@@ -1,5 +1,5 @@
 {
-  "name": "ngx-sdcores",
+  "name": "ngx-sdcores-example",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -7,10 +7,12 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o --hmr",
-    "build": "ng build --configuration production --aot=true --build-optimizer=true --output-hashing=all",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start": "ng serve ngx-sdcores-example",
+    "example:build": "ng build ngx-sdcores-example",
+    "example:build:prod": "ng build ngx-sdcores-example --base-href=/ngx-sdcores/ --output-path=demo/",
+    "lib:build": "ng build ngx-sdcores-lib && cd dist/ngx-sdcores-lib && npm pack",
+    "lib:build:prod": "ng build ngx-sdcores-lib && cd dist/ngx-sdcores-lib && npm pack",
+    "lib:build:prod:publish": "ng build ngx-sdcores-lib && cd dist/ngx-sdcores-lib && npm pack && npm publish"
   },
   "private": true,
   "dependencies": {
@@ -24,7 +26,7 @@
     "@angular/router": "^16.2.0",
     "@ng-select/ng-select": "^11.1.1",
     "bootstrap": "4.6.2",
-    "ng-alt-snotify": "^16.0.0-alpha.1",
+    "ngx-sdcores-lib": "file:dist/ngx-sdcores-lib",
     "ngx-bootstrap": "^11.0.2",
     "ngx-image-cropper": "^7.0.3",
     "ngx-spinner": "^16.0.2",
@@ -36,7 +38,9 @@
     "@angular-devkit/build-angular": "^16.2.4",
     "@angular/cli": "^16.2.4",
     "@angular/compiler-cli": "^16.2.0",
+    "@angular/language-service": "^16.2.3",
     "@types/jasmine": "~4.3.0",
+    "@types/node": "^12.11.1",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -45,5 +49,8 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^16.2.0",
     "typescript": "~5.1.3"
+  },
+  "engines": {
+    "node": ">=16.14.0"
   }
 }

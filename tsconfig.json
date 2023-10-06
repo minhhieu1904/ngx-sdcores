@@ -4,42 +4,25 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": false,
+    "strict": false,
+    "noImplicitOverride": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "noImplicitReturns": false,
+    "noImplicitAny": false,
+    "noFallthroughCasesInSwitch": false,
     "sourceMap": true,
     "paths": {
-      "ngx-sdcores-lib": [
-        "dist/ngx-sdcores-lib"
-      ],
-      "@services/*": [
-        "projects/ngx-sdcores-lib/src/lib/services/*"
-      ],
-      "@models/*": [
-        "projects/ngx-sdcores-lib/src/lib/models/*"
-      ],
-      "@constants/*": [
-        "projects/ngx-sdcores-lib/src/lib/constants/*"
-      ],
-      "@utilities/*": [
-        "projects/ngx-sdcores-lib/src/lib/utilities/*"
-      ]
+      "ngx-sdcores-lib": ["dist/ngx-sdcores-lib/ngx-sdcores-lib", "dist/ngx-sdcores-lib"]
     },
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "ES2022",
-    "module": "ES2022",
-    "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "target": "es2022",
+    "module": "es2022",
+    "lib": ["es2020", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
