@@ -1,8 +1,4 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/ngx-sdcores-lib",
-  "lib": {
-    "entryFile": "src/snotify/src/public-api.ts"
-  },
-  "assets": ["./styles/**/*.scss"]
+  "dest": "../../dist/ngx-sdcores-lib"
 }

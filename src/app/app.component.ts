@@ -1,7 +1,7 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import '@utilities/extension-methods';
 import { OperationResult } from '@utilities/operation-result';
-import { NgxMediaUploadComponent } from 'projects/ngx-sdcores-lib/src/public-api';
+import { NgxMediaUploadComponent } from 'projects/ngx-sdcores-lib/src/public_api';
 
 @Component({
   selector: 'app-root',
