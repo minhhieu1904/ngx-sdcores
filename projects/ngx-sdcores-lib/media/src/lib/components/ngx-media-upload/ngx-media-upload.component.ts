@@ -1,16 +1,14 @@
 import { Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
-import { IMAGE_TYPES_CONST, MEDIA_TYPE_CONST, VIDEO_TYPES_CONST } from '@constants/media-type.constant';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { OperationResult } from '@utilities/operation-result';
-import { MediaItem } from '@models/media-item';
-import { FunctionUtility } from '@utilities/function-utility';
 import { ImageCroppedEvent, ImageCropperModule, ImageTransform } from 'ngx-image-cropper';
-import { NgSnotifyService } from '@services/ng-snotify.service';
-import { MSG_CONST, TITLE_CONST } from '@constants/notification.constant';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NgSnotifyService } from '../../services';
+import { IMAGE_TYPES_CONST, MEDIA_TYPE_CONST, MSG_CONST, TITLE_CONST, VIDEO_TYPES_CONST } from '../../constants';
+import { MediaItem, OperationResult } from '../../interfaces';
+import { FunctionUtility } from '../../utilities';
 
 @Component({
   standalone: true,

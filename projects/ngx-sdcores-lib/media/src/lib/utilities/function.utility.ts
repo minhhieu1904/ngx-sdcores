@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpParams } from "@angular/common/http";
-import { Pagination } from "./pagination-utility";
+import { Pagination } from "../interfaces/pagination.interface";
 import { NgxSpinnerService } from "ngx-spinner";
-import { NgSnotifyService } from "@services/ng-snotify.service";
+import { NgSnotifyService } from "../services";
 
 @Injectable({
   providedIn: "root",
