@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, ViewChild } from '@angular/core';
 import { BidiModule } from '@angular/cdk/bidi';
-import { NgScrollbar, NgScrollbarModule } from 'ngx-scrollbar';
-import { NgScrollbarReachedModule } from 'ngx-scrollbar/reached-event';
-
+import { NgScrollbar } from './ng-scrollbar';
+import { NgScrollbarReachedModule } from './reached-event';
+import { NgScrollbarModule } from './ng-scrollbar.module';
 
 @Component({
   template: `

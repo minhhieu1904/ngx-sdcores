@@ -8,4 +8,4 @@ export * from './lib/ng-scrollbar';
 export * from './lib/scroll-viewport';
 export * from './lib/utils/scrollbar-manager';
 export * from './lib/smooth-scroll';
-
+export * from './lib/reached-event';
