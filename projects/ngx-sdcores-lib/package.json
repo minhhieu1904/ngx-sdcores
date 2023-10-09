@@ -5,6 +5,7 @@
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^16.2.0",
+    "@angular/cdk": "^16.2.0",
     "@angular/core": "^16.2.0",
     "bootstrap": "4.6.2",
     "ngx-image-cropper": "^7.0.3",
@@ -12,31 +13,5 @@
   },
   "dependencies": {
     "tslib": "^2.3.0"
-  },
-  "module": "fesm2022/ngx-sdcores-lib.mjs",
-  "typings": "index.d.ts",
-  "exports": {
-    "./package.json": {
-      "default": "./package.json"
-    },
-    ".": {
-      "types": "./index.d.ts",
-      "esm2022": "./esm2022/ngx-sdcores-lib.mjs",
-      "esm": "./esm2022/ngx-sdcores-lib.mjs",
-      "default": "./fesm2022/ngx-sdcores-lib.mjs"
-    },
-    "./snotify": {
-      "types": "./snotify/index.d.ts",
-      "esm2022": "./snotify/esm2022/ngx-sdcores-lib-snotify.mjs",
-      "esm": "./snotify/esm2022/ngx-sdcores-lib-snotify.mjs",
-      "default": "./snotify/fesm2022/ngx-sdcores-lib-snotify.mjs"
-    },
-    "./media": {
-      "types": "./media/index.d.ts",
-      "esm2022": "./media/esm2022/ngx-sdcores-lib-media.mjs",
-      "esm": "./media/esm2022/ngx-sdcores-lib-media.mjs",
-      "default": "./media/fesm2022/ngx-sdcores-lib-media.mjs"
-    }
-  },
-  "sideEffects": false
+  }
 }

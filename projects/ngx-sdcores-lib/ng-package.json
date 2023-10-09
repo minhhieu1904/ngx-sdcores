@@ -1,4 +1,5 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/ngx-sdcores-lib"
+  "dest": "../../dist/ngx-sdcores-lib",
+  "assets": ["./styles"]
 }

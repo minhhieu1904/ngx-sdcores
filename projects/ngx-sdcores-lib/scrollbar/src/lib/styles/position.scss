@@ -1,0 +1,52 @@
+@import "selectors";
+
+@mixin setScrollbarYPosition {
+  @include scrollbarY {
+    top: 0;
+    bottom: 0;
+  }
+
+  @include ltr {
+    @include scrollbarY {
+      right: 0;
+      left: unset;
+    }
+
+    @include scrollbarYInverted {
+      @include scrollbarY {
+        left: 0;
+        right: unset;
+      }
+    }
+  }
+
+  @include rtl {
+    @include scrollbarY {
+      left: 0;
+      right: unset;
+    }
+    @include scrollbarYInverted {
+      @include scrollbarY {
+        left: unset;
+        right: 0;
+      }
+    }
+  }
+}
+
+@mixin setScrollbarXPosition {
+  @include scrollbarX {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: unset;
+  }
+
+  @include scrollbarXInverted {
+    @include scrollbarX {
+      top: 0;
+      bottom: unset;
+    }
+  }
+}
+

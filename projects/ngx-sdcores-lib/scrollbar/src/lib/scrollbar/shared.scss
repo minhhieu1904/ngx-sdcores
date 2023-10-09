@@ -1,0 +1,57 @@
+@import "../styles/selectors";
+
+::ng-deep {
+
+  .ng-scrollbar-wrapper {
+    // Disable scrollbars pointer events, and use viewport pointer events instead
+    // This enables scrolling when the pointer is over the scrollbar
+    @include viewportPointerEvents {
+      > .scrollbar-control {
+        pointer-events: none;
+      }
+    }
+
+    // Disable selection when a scrollbar is being dragged or clicked
+    @include scrollbarInAction {
+      @include viewport {
+        user-select: none;
+      }
+    }
+
+    > .scrollbar-control {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: var(--scrollbar-track-transition);
+
+      // Hide scrollbar thumb when content is not scrollable
+      &[scrollable="false"] .ng-scrollbar-thumb {
+        display: none;
+      }
+    }
+  }
+
+  // Scrollbar track
+  .ng-scrollbar-track {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    border-radius: var(--scrollbar-border-radius);
+    background-color: var(--scrollbar-track-color);
+    overflow: hidden;
+    transition: var(--scrollbar-track-transition);
+    cursor: default;
+  }
+
+  // Scrollbar thumb
+  .ng-scrollbar-thumb {
+    box-sizing: border-box;
+    position: relative;
+    border-radius: inherit;
+    background-color: var(--scrollbar-thumb-color);
+    transform: translateZ(0);
+    transition: var(--scrollbar-thumb-transition);
+  }
+
+}

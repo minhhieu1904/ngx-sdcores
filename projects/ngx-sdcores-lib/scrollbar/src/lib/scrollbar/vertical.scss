@@ -1,0 +1,36 @@
+@import "../styles/selectors";
+@import "../styles/position";
+@import "../styles/fit-scrollbar";
+
+::ng-deep {
+  .ng-scrollbar-wrapper {
+    @include scrollbarY {
+      width: var(--vertical-scrollbar-total-size);
+
+      > .ng-scrollbar-track {
+        width: var(--vertical-scrollbar-size);
+        height: calc(100% - var(--scrollbar-padding) * 2);
+
+        > .ng-scrollbar-thumb {
+          height: 0;
+          width: 100%;
+        }
+      }
+    }
+
+    @include scrollbarYHovered {
+      @include scrollbarY {
+        .ng-scrollbar-thumb {
+          background-color: var(--scrollbar-thumb-hover-color);
+        }
+      }
+    }
+
+    @include enabled {
+      @include setScrollbarYPosition;
+      &[track="all"] {
+        @include fitVerticalScrollbar;
+      }
+    }
+  }
+}
