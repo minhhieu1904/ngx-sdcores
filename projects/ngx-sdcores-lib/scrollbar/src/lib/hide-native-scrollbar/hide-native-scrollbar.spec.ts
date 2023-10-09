@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { NgScrollbar } from 'ngx-scrollbar';
 
 import { HideNativeScrollbar } from './hide-native-scrollbar';
+import { NgScrollbar } from '../ng-scrollbar';
 
 describe('HideNativeScrollbar Directive', () => {
   let fixture: ComponentFixture<NgScrollbar>;
